@@ -9,3 +9,8 @@ def movie_list(request):
 def index(request):
     return render(request, 'movie/index.html', {})
 
+def detail_view(request, id):
+    about_movie = {}
+    about_movie["movie"] = Movie.objects.get(movie_id = id)
+
+    return render(request, "movie/detail_view.html", about_movie)

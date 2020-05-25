@@ -1,0 +1,42 @@
+{% extends 'movie/base.html' %}
+
+{% block content %}
+<div class="container py-3">
+    <div class="title h1 text-center">{{ movie.title }}</div>
+    <!-- Card Start -->
+    <div class="card">
+      <div class="row ">
+  
+        <div class="col-md-7 px-3">
+          <div class="card-block px-6">
+            <h4 class="card-title">{{ movie.title }} </h4>
+            <p class="card-text">
+              {{ movie.description }}
+            </p>
+            <p class="card-text">Gatunek: {{ movie.genre }}</p>
+            <p class="card-text">Reżyser: {{ movie.director }}</p>
+            <p class="card-text">Kraj: {{ movie.publisher_country }}</p>
+            <p>
+              <iframe width="560" height="315" src="{{ movie.trailer }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </p>
+            <br>
+          </div>
+        </div>
+        <!-- Carousel start -->
+        <div class="col-md-5">
+          <div id="CarouselTest" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#CarouselTest" data-slide-to="0" class="active"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="d-block" src="{{ movie.poster }}" height="500" width="400" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+{% endblock %}
