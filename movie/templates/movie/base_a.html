@@ -22,6 +22,18 @@
                     <a class="nav-link" href="{% url 'movie_list' %}">Filmy</a>
                   </li>
                 </ul>
+                {% if user.is_authenticated %}
+                  <form class="form-inline mt-2 mt-md-0" action="/logout" style="padding-left: 10px;">
+                  <button class="btn btn-secondary" type="submit">Wyloguj</button>
+                  </form>
+                {% else %}
+                  <form class="form-inline mt-2 mt-md-0" action="/register" style="padding-left: 10px;">
+                  <button class="btn btn-secondary" type="submit">Zarejestruj</button>
+                  </form>
+                  <form class="form-inline mt-2 mt-md-0" action="/login" style="padding-left: 10px;">
+                  <button class="btn btn-secondary" type="submit">Zaloguj</button>
+                  </form>
+                {% endif %}
               </div>
             </nav>
           </header>

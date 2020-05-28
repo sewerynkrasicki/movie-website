@@ -3,12 +3,13 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container py-3">
-    <div class="title h1 text-center">Rejestracja</div>
+    <div class="title h1 text-center">Logowanie</div>
     <div class="col-md-7 px-3" style="padding-top: 10px;">
         <form method="POST" class="form-group">
             {% csrf_token %}
             {{form|crispy}}
-            <button type="submit" class="btn btn-success">Zarejestruj się!</button>
+            <p>Nie masz jeszcze konta? Stwórz je <a href="/register">tutaj</a></p>
+            <button type="submit" class="btn btn-success">Zaloguj</button>
         </form>
     </div>
 </div>

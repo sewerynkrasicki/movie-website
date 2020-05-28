@@ -26,12 +26,18 @@
                   <input class="form-control mr-sm-2" value='{{ request.GET.q }}' name='q' type="text" placeholder="Szukaj" aria-label="Search">
                   <button class="btn btn-secondary" type="submit">Szukaj</button>
                 </form>
-                <form class="form-inline mt-2 mt-md-0" action="/register" style="padding-left: 10px;">
-                <button class="btn btn-secondary" type="submit">Zarejestruj</button>
-                </form>
-                <form class="form-inline mt-2 mt-md-0" action="/login" style="padding-left: 10px;">
-                <button class="btn btn-secondary" type="submit">Zaloguj</button>
-                </form>
+                {% if user.is_authenticated %}
+                  <form class="form-inline mt-2 mt-md-0" action="/logout" style="padding-left: 10px;">
+                  <button class="btn btn-secondary" type="submit">Wyloguj</button>
+                  </form>
+                {% else %}
+                  <form class="form-inline mt-2 mt-md-0" action="/register" style="padding-left: 10px;">
+                  <button class="btn btn-secondary" type="submit">Zarejestruj</button>
+                  </form>
+                  <form class="form-inline mt-2 mt-md-0" action="/login" style="padding-left: 10px;">
+                  <button class="btn btn-secondary" type="submit">Zaloguj</button>
+                  </form>
+                {% endif %}
               </div>
             </nav>
           </header>
