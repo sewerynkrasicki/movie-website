@@ -29,12 +29,6 @@ def index(request):
     return render(request, 'movie/index.html', {})
 
 def detail_view(request, id):
-    query = request.GET.get('q')
-    if query:
-        query = Movie.objects.filter(
-            Q(title__icontains=query)
-            )
-        return render(request, 'movie/movie_list.html', {'movies': query})
     about_movie = {}
     about_movie["movie"] = Movie.objects.get(movie_id = id)
 
