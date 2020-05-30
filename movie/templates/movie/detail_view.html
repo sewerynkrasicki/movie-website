@@ -20,6 +20,23 @@
             <p>
               <iframe width="560" height="315" src="{{ movie.trailer }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </p>
+            {% if user.is_authenticated %}
+            {% if movie not in user.profile.fav_movies.all %}
+            <p>
+              <form method="POST" class="form-group" href="{% url 'fav' movie.movie_id user.id %}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-success">Dodaj do ulubionych</button>
+              </form>
+            </p>
+            {% else %}
+            <p>
+              <form method="POST" class="form-group" href="{% url 'fav' movie.movie_id user.id %}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger">Usuń z ulubionych</button>
+              </form>
+            </p>
+            {% endif %}
+            {% endif %}
             <br>
           </div>
         </div>
