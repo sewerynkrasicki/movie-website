@@ -2,6 +2,16 @@
 
 {% block content %}
 <div class="container">
+    <p>Wybierz kategorie:</p>
+    <form method="POST">
+    {% csrf_token %}
+    <select name="item_id">
+    {% for genre in genres %}
+        <option value="{{ genre.genre_name }}">{{ genre.genre_name }}</option>
+    {% endfor %}
+    </select>
+    <button type="submit" class="btn btn-success">Wybierz</button>
+    </form>
     <div class="row">
 {% for movie in movies %}
 <div class="col-md-4">

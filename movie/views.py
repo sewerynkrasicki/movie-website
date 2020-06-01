@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Movie, Profile
+from .models import Movie, Profile, Genre
 from django.db.models import Q
 from django.db.models import Value
 from django.db.models.functions import Concat
@@ -15,15 +15,19 @@ def fav_movie_list(request):
 
 def movie_list(request):
     movies = Movie.objects.all()
+    genres = Genre.objects.all()
     query = request.GET.get('q')
-    if query is not None:
+    if query:
         query = Movie.objects.filter(
             Q(title__icontains=query)
             )
-        return render(request, 'movie/movie_list.html', {'movies': query})
-    else:
-        return render(request, 'movie/movie_list.html', {'movies': movies})
-    return render(request, 'movie/movie_list.html', {'movies': movies})
+        return render(request, 'movie/movie_list.html', {'movies': query, 'genres': genres})
+    elif request.method == 'POST':
+        selected_item = Movie.objects.filter(
+            Q(genre__genre_name__icontains=request.POST.get('item_id'))
+        )
+        return render(request, 'movie/movie_list.html', {'movies': selected_item, 'genres': genres})
+    return render(request, 'movie/movie_list.html', {'movies': movies, 'genres': genres})
 
 def index(request):
     query = request.GET.get('q')
